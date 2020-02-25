@@ -1,0 +1,16 @@
+﻿@model IntegerArrayInputModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Give me an integer array</h1>
+    @using (Html.BeginForm(FormMethod.Post))
+    {
+        @Html.LabelFor(m => m.InputText)
+        @Html.TextBoxFor(m => m.InputText)
+        @Html.ValidationMessageFor(m => m.InputText)
+        <button type="submit">Evaluate!</button>
+    }
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
