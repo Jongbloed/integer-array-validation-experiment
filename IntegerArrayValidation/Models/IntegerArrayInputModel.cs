@@ -9,8 +9,11 @@ namespace IntegerArrayValidation.Models
 {
     public class IntegerArrayInputModel
     {
-        [MinLength(1)]
-        [RegularExpression(@"^\[[0-9]+(?:,\s*[0-9]+)*\]$")]
+        [Required]
+        [RegularExpression(
+            @"^\[[0-9]+(?:,\s*[0-9]+)*\]$", 
+            ErrorMessage = "Please enter an array of integers in the format \"[x,y]\""
+        )]
         [DisplayName("Integer array")]
         public string InputText { get; set; }
         public string Answer { get; set; }
