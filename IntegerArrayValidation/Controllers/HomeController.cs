@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using IntegerArrayValidation.Models;
+using System.Text.RegularExpressions;
 
 namespace IntegerArrayValidation.Controllers
 {
@@ -20,7 +21,11 @@ namespace IntegerArrayValidation.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Answer = "Valid";
+                var input = Regex.Matches(model.InputText, "[0-9]+")
+                    .Select(match => int.Parse(match.Value))
+                    .ToArray();
+                var output = Triplicate.DetermineLinq(input);
+                model.Answer = $"[{string.Join(",", output)}]";
             }
             else
             {
@@ -28,6 +33,5 @@ namespace IntegerArrayValidation.Controllers
             }
             return View(model);
         }
-
     }
 }
